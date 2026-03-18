@@ -6,7 +6,7 @@
 > 【狀態】題目敘述、輸入說明、輸出說明待補充
 >
 > 【建議】請參考以下連結自行補充：
-> - [ZeroJudge 題目頁面](https://zerojudge.tw/ShowProblem?problemid=a028)
+> - [ZeroJudge 題目頁面](https://zerojudge.tw/ShowProblem?problemid=c014)
 > - [UVA Online Judge](https://uva.onlinejudge.org/external/10035.pdf)
 > - [Yui Huang 題解參考](https://yuihuang.com/cpe-level-1/)
 
