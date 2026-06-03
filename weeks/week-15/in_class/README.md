@@ -18,7 +18,8 @@
 
 ```
 [ ] 0. 第一次：Fork 課程 repo 到自己的 GitHub 帳號，再 clone 自己的 fork
-       → git clone <你的 fork 網址> && git remote add upstream <課程 repo 網址>
+       → git clone <你的 fork 網址>
+       → cd <repo 目錄> && git remote add upstream <課程 repo 網址>
 [ ] 1. 從 main 開分支：feature/wk15-<日期>-<學號>
 [ ] 2. 跟 AI 把題目拆成 ≥3 個 test case（含 ≥1 個 edge case）
 [ ] 3. 寫進 test_*.py，確認全部紅燈（失敗）
