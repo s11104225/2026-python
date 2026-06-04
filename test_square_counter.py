@@ -14,7 +14,7 @@ AI 提示：確認平方數的邏輯，驗證例外處理。
 
 import unittest
 
-# from square_counter import count_squares  # 完成後解除註解
+from square_counter import count_squares
 
 
 class TestCountSquares(unittest.TestCase):

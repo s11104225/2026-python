@@ -12,7 +12,7 @@ AI 提示：先確認算法邏輯，驗證 gcd 計算無誤。
 
 import unittest
 
-# from gcd import sum_of_gcd  # 完成 gcd.py 後解除註解
+from gcd import sum_of_gcd
 
 
 class TestSumOfGcd(unittest.TestCase):
