@@ -10,12 +10,13 @@ cd weeks/week-16/solutions/<學號>/0611
 ## 每階段固定循環
 
 **Read spec → Dev for red(`test:` commit)→ Dev for green(`feat:` commit)→ push**,
-四個階段重複同一循環,push 完才進下一階段。
+五個階段重複同一循環,push 完才進下一階段。
 
 ## 檔案說明
 
 - `test_timing.py`:Stage 1 測試骨架,**先補齊測試、跑紅燈、commit,再寫 `timing.py`**
 - `test_sorts.py`:Stage 2 測試骨架,三種排序共用同一組測試(用 `subTest`)
+- Stage 3–5 的測試(`test_plot.py`、`test_security.py` 等)**沒有骨架,自己從零寫**——鷹架到此淡出
 - 其餘檔案(`timing.py`、`sorts.py`、`benchmark.py`、`plot.py`…)都是**紅燈 commit 之後**才建立
 - 完成後追加 `AI_LOG.md`(範本見 [`week-15/in_class/ai-log-template.md`](../../../week-15/in_class/ai-log-template.md))與 `TEST_LOG.md`
 
@@ -46,28 +47,30 @@ def run_benchmark(sizes=(500, 1000, 2000, 4000), repeats=3) -> dict: ...
 - 函式名、簽名都不能改,否則測試 import 會失敗
 - `python benchmark.py` 要印出比較表並產生 `results.json`
 
-### Stage 3 / Stage 4
+### Stage 3 加速實驗
 
-見 [`../0611-sort-lab.md`](../0611-sort-lab.md):加入 `sorted()` baseline、
+- 把內建 `sorted()` 加入 benchmark 當 baseline;至少一種加速方案(Cython 或演算法優化)
+- 加速版**必須通過 Stage 2 同一組正確性測試**(把被測函式做成參數,別再寫一份);數據進 `results.json`
 
+### Stage 4 `plot.py` 畫圖
 
-### Stage 4
+- 讀 `results.json` 畫折線圖(y 軸 log scale),輸出 `assets/benchmark.png`
+- `plot.py` 開頭加 `matplotlib.use("Agg")`;測試需驗證 PNG 確實產生且非空檔
 
-實作至少一種加速方案(Cython 或演算法優化)、`plot.py` 畫圖輸出 `assets/benchmark.png`。
+### Stage 5 安全性自掃
 
-### Stage 5
+1. 依 [OpenSSF Secure Coding Guide for Python](https://best.openssf.org/Secure-Coding-Guide-for-Python/) 檢視 Stage 1–4 寫的所有程式,找出安全問題
+2. 把問題編成會紅的測試放進 `test_security.py`(紅燈),修正後轉綠;每條都在報告記錄問題與修補方式
+3. 掃到但判定**不適用**的條目也要寫一句理由(例:benchmark 的 `random` 非安全敏感,無需改 `secrets`)
 
-1. 利用 https://best.openssf.org/Secure-Coding-Guide-for-Python/ 的資料驗證開發的所有程式碼，確認是否有安全問題。
-2. 確認找到的安全問題，並進行紀錄並提供修補方式。
-3. 完成修補後送出。
+> 細節與評分見 [`../0611-sort-lab.md`](../0611-sort-lab.md)。
 
 
 ## 本日規則
 
-- [ ] 每階段先紅燈 commit(`test:`)再綠燈 commit(`feat:`),共八個 commit
+- [ ] 每階段先紅燈 commit(`test:`)再綠燈 commit(`feat:`),五階段共十個 commit
 - [ ] AI 提示詞自己打,逐字記入 `AI_LOG.md`，內容最少要有 (1) 加速多少百分比；(2) 演算法優化的策略為何？(3) 依 Python 安全程式原則，修補幾項程式問題。
-- [ ] 全程 AI 協作,四階段課堂內完成;Stage 2 綠燈後先開 PR,**下課前 PR 四階段齊**
-- [ ] 來不及的階段可課後補交(6/17 23:59 前),**該階段分數打 8 折**(以 commit 時間為準)
+- [ ] 全程 AI 協作,**五階段全部課堂內完成**;Stage 2 綠燈後先開 PR,**下課前 PR 五階段齊,無課後補交**
 - [ ] Cython 編譯產物(`build/`、`*.c`、`*.so`)不准 commit
 
 <!-- 以下為 AI 協作協議,供學生與 AI 助理共同參考 -->
