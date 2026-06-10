@@ -1,4 +1,6 @@
-"""Sorting algorithms for Stage 2."""
+"""Sorting algorithms for the sorting lab."""
+
+from heapq import heapify, heappop
 
 
 def bubble_sort(data: list) -> list:
@@ -64,3 +66,14 @@ def _merge(left: list, right: list) -> list:
     result.extend(left[left_index:])
     result.extend(right[right_index:])
     return result
+
+
+def builtin_sort(data: list) -> list:
+    return sorted(data)
+
+
+def quick_sort_optimized(data: list) -> list:
+    heap = data[:]
+    heapify(heap)
+    return [heappop(heap) for _ in range(len(heap))]
+

@@ -1,13 +1,25 @@
-"""Benchmark Stage 2 sorting algorithms."""
+"""Benchmark sorting algorithms."""
 
 import json
 from random import Random
 from time import perf_counter
 
-from sorts import bubble_sort, merge_sort, quick_sort
+from sorts import (
+    bubble_sort,
+    builtin_sort,
+    merge_sort,
+    quick_sort,
+    quick_sort_optimized,
+)
 
 
-SORT_FUNCTIONS = [bubble_sort, quick_sort, merge_sort]
+SORT_FUNCTIONS = [
+    bubble_sort,
+    quick_sort,
+    merge_sort,
+    builtin_sort,
+    quick_sort_optimized,
+]
 
 
 def make_data(n: int, seed: int = 42) -> list:
