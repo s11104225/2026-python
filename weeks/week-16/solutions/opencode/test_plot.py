@@ -10,7 +10,7 @@ import os
 import json
 import unittest
 
-# from plot import load_results, plot_results  # 完成 plot.py 後解除註解
+from plot import load_results, plot_results
 
 
 class TestPlot(unittest.TestCase):
@@ -41,25 +41,31 @@ class TestPlot(unittest.TestCase):
 
     def test_load_results_returns_dict(self):
         """載入 results.json 回傳 dict"""
-        self.fail("尚未實作")
+        result = load_results(self.test_json)
+        self.assertIsInstance(result, dict)
 
     def test_load_results_has_expected_keys(self):
         """dict 包含各演算法名稱作為 key"""
-        self.fail("尚未實作")
+        result = load_results(self.test_json)
+        for name in ("bubble_sort", "quick_sort"):
+            self.assertIn(name, result)
 
     def test_plot_results_creates_png(self):
         """plot_results 產生 PNG 檔案"""
-        self.fail("尚未實作")
+        plot_results(self.sample_data, self.test_png)
+        self.assertTrue(os.path.exists(self.test_png))
 
     # ── Edge cases ──
 
     def test_plot_results_png_not_empty(self):
         """EDGE: 產生之 PNG 檔案大小大於 0"""
-        self.fail("尚未實作")
+        plot_results(self.sample_data, self.test_png)
+        self.assertGreater(os.path.getsize(self.test_png), 0)
 
     def test_load_results_file_not_found(self):
         """EDGE: 不存在的路徑拋出 FileNotFoundError"""
-        self.fail("尚未實作")
+        with self.assertRaises(FileNotFoundError):
+            load_results("/tmp/_nonexistent_results.json")
 
 
 if __name__ == "__main__":
